@@ -1,0 +1,42 @@
+<h1>Hola mundo {{ title }}</h1>
+
+<p>{{ 1 + 1 }}</p>
+
+<button (click)="changeTitle()">change title</button>
+<button (click)="empty()">Vaciar</button>
+
+<input type="text" [(ngModel)]='nombrebanda' (keydown.enter)="addRockBand()">
+<button (click)="addRockBand()">Agregar</button>
+
+<ul>
+  <li *ngIf="rockbands.length === 0">No hay bandas de rock</li>
+  <li *ngFor="let rock of rockbands; index as i">{{ rock }} {{ i +1 }}
+    <strong *ngIf="i === 0">Este es el primero</strong>
+    <button (click)="deleteItem(i)">Borrar</button>
+    <button (click)="updateItem(i)">Actualizar</button>
+  </li>
+</ul>
+
+<!-- <div *ngIf="nombrebanda === 'jose'">
+  Es jose
+</div> -->
+
+<div [ngSwitch]="nombrebanda">
+  <p *ngSwitchCase="'jose'">es jose</p>
+  <p *ngSwitchCase="'julian'">es julian</p>
+  <p *ngSwitchCase="'nico'">es nico</p>
+  <p *ngSwitchDefault>no coincide</p>
+</div>
+<ul>
+  <li *ngFor="let user of users">
+    <div class="avatar" *ngIf="user.isSingle">
+      Nombre: {{ user.name }}
+      Edad: {{ user.age }}
+      Soltero: {{ user.isSingle ? 'Sí' : 'No'}}
+      Avatar: <img [src]= "user.avatar" alt="">
+    </div>
+
+  </li>
+</ul>
+
+<app-product-list></app-product-list>
